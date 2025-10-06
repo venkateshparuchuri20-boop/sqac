@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Name — Portfolio</title>
+
+  <!-- Replace or add Google Font if you want -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#071022;
+      --card:#0b1630;
+      --muted:#9fb0c8;
+      --accent:#2dd4bf;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --max-width:1000px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+      background: linear-gradient(180deg,#071022 0%, #071833 60%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:28px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:var(--max-width);
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:22px;
+    }
+
+    .brand{
+      display:flex;
+      gap:14px;
+      align-items:center;
+    }
+    .logo{
+      width:56px;
+      height:56px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),#4ad7ff);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#042233;
+      font-weight:800;
+      font-size:20px;
+      box-shadow:0 6px 18px rgba(13,22,30,0.6);
+    }
+    nav a{
+      color:var(--muted);
+      text-decoration:none;
+      margin-left:14px;
+      font-weight:600;
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:10px;
+    }
+    nav a:hover{ color:#fff; background:rgba(255,255,255,0.03) }
+
+    main{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+      border-radius:var(--radius);
+      padding:18px;
+      box-shadow: 0 10px 40px rgba(3,8,18,0.6);
+    }
+
+    /* Top grid: hero + quick info */
+    .top{
+      display:grid;
+      grid-template-columns: 260px 1fr;
+      gap:18px;
+      align-items:start;
+    }
+
+    .card{
+      background:var(--card);
+      border-radius:12px;
+      padding:18px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.01);
+    }
+
+    .profile-photo{
+      width:100%;
+      border-radius:10px;
+      overflow:hidden;
+      aspect-ratio: 1 / 1;
+      display:block;
+      border:1px solid rgba(255,255,255,0.02);
+      background:var(--glass);
+    }
+    .name{
+      margin-top:12px;
+      font-size:20px;
+      font-weight:700;
+      color:#f7fbff;
+    }
+    .role{
+      font-size:13px;
+      color:var(--muted);
+      margin-top:6px;
+    }
+
+    .about{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .cta-row{ display:flex; gap:10px; margin-top:10px; flex-wrap:wrap; }
+    .btn{
+      border-radius:10px;
+      padding:10px 14px;
+      font-weight:700;
+      font-size:14px;
+      text-decoration:none;
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      background:linear-gradient(90deg,var(--accent),#64d2ff);
+      color:#042233;
+      box-shadow:0 8px 20px rgba(45,212,191,0.12);
+    }
+    .btn.secondary{
+      background:transparent;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    /* Right column */
+    .hero{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+    .intro{
+      font-size:18px;
+      line-height:1.45;
+      color:#eaf6ff;
+    }
+    .highlights{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:6px;
+    }
+    .chip{
+      background:rgba(255,255,255,0.02);
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:13px;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,0.02);
+    }
+
+    /* Sections area */
+    .sections{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1fr 320px;
+      gap:18px;
+    }
+
+    section.card{
+      padding:18px;
+    }
+
+    h2.section-title{
+      margin:0 0 12px 0;
+      font-size:16px;
+      color:#fff;
+    }
+
+    /* Skills list */
+    .skills{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:10px;
+    }
+    .skill{
+      background: rgba(255,255,255,0.02);
+      padding:10px;
+      border-radius:10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border:1px solid rgba(255,255,255,0.02);
+    }
+    .skill .name{ font-weight:700; color:#e9f8f5 }
+    .skill .level{ font-size:12px; color:var(--muted) }
+
+    /* Education */
+    .edu-item{
+      margin-bottom:12px;
+      padding-bottom:10px;
+      border-bottom:1px dashed rgba(255,255,255,0.03);
+    }
+    .edu-item b{ display:block; color:#fff; font-size:15px }
+    .edu-item span{ color:var(--muted); font-size:13px }
+
+    /* Right sidebar (contact + download + socials) */
+    .sidebar .contact-row{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+    .contact-item{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .socials{ display:flex; gap:8px; margin-top:12px; }
+    .socials a{
+      display:inline-flex;
+      width:40px;
+      height:40px;
+      align-items:center;
+      justify-content:center;
+      background:rgba(255,255,255,0.02);
+      border-radius:10px;
+      color:var(--muted);
+      text-decoration:none;
+      font-weight:700;
+    }
+    .socials a:hover{ transform:translateY(-4px); transition:all .15s ease }
+
+    footer{
+      margin-top:18px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* subtle animations */
+    .fade-in{
+      animation: fadeUp .7s ease both;
+    }
+    @keyframes fadeUp{
+      from{ transform:translateY(8px); opacity:0 }
+      to{ transform:none; opacity:1 }
+    }
+
+    /* small screens */
+    @media (max-width:880px){
+      .top{ grid-template-columns: 1fr; }
+      .sections{ grid-template-columns: 1fr; }
+      .sidebar{ order:3 }
+    }
+
+    @media (max-width:520px){
+      body{ padding:16px }
+      .logo{ width:48px; height:48px; font-size:18px }
+      nav a{ display:none } /* simplify nav on tiny screens */
+      .wrap{ padding:0 6px }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">SQAC</div>
+        <div>
+          <div style="font-weight:800;">P Venkatesh</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px;">First Year — Web Developer (Beginner)</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main class="fade-in">
+      <div class="top">
+        <!-- left card: profile -->
+        <aside class="card">
+          <!-- Replace the image path: assets/profile.jpg -->
+          <img class="profile-photo" src="venkatesh.jpg" profile photo of your Name</img>
+          <div class="name">P Venkatesh</div>
+          <div class="role">Computer Science — 1st Year</div>
+
+          <div style="margin-top:12px; font-size:14px; color:var(--muted);">
+            Location: Chennai, India
+          </div>
+
+          <div class="cta-row">
+            <!-- download resume file in same folder named resume.pdf -->
+            
+            <a class="btn secondary" href="mailto:venkateshparuchuri20@gmail.com">Email Me</a>		
+          </div>
+
+          <div style="margin-top:14px;">
+            <div style="font-size:13px;color:var(--muted);margin-bottom:6px">Quick Info</div>
+            <div class="chip">HTML & CSS</div>
+            <div class="chip">Responsive Design</div>
+            <div class="chip">Flexbox / Grid</div>
+          </div>
+        </aside>
+
+        <!-- right: hero / intro -->
+        <section class="hero">
+          <div>
+            <p class="intro">
+              Hi — I'm <strong>P venkatesh</strong>, a first-year computer science student building clean, responsive
+              front-end projects using <strong>HTML</strong> and <strong>CSS</strong>. I enjoy making minimal, accessible
+              websites and learning modern layout techniques like Flexbox and Grid.
+            </p>
+
+            <div class="highlights" aria-hidden="true">
+              <div class="chip">Personal Projects</div>
+              <div class="chip">Problem Solving</div>
+              <div class="chip">Team Player</div>
+            </div>
+          </div>
+
+          <div style="margin-top:8px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn secondary" href="#projects" aria-label="See projects (placeholder)">See Projects</a>
+	
+          </div>
+        </section>
+      </div>
+
+      <div class="sections">
+        <!-- MAIN LEFT: About / Skills / Education -->
+        <div>
+          <section id="about" class="card">
+            <h2 class="section-title">About Me</h2>
+            <p style="color:var(--muted);line-height:1.5;">
+              I'm a first-year student passionate about front-end development. I love taking ideas and turning them into
+              simple, clean webpages. Currently learning responsive design, CSS animations, accessibility, and best
+              practices for maintainable styles.
+            </p>
+            <p style="margin-top:8px;color:var(--muted);font-size:14px;">
+              Interests: Web dev, UI design.
+            </p>
+          </section>
+
+          <section id="skills" class="card" style="margin-top:12px;">
+            <h2 class="section-title">Skills</h2>
+
+            <div class="skills" role="list">
+              <div class="skill" role="listitem">
+                <div>
+                  <div class="name">HTML5</div>
+                  <div class="level">Semantic markup</div>
+                </div>
+                <div style="font-size:12px;color:var(--muted)">Advanced</div>
+              </div>
+
+              <div class="skill" role="listitem">
+                <div>
+                  <div class="name">CSS3</div>
+                  <div class="level">Flexbox · Grid · Animations</div>
+                </div>
+                <div style="font-size:12px;color:var(--muted)">Intermediate</div>
+              </div>
+
+              <div class="skill" role="listitem">
+                <div>
+                  <div class="name">Responsive Design</div>
+                  <div class="level">Mobile-first layouts</div>
+                </div>
+                <div style="font-size:12px;color:var(--muted)">Intermediate</div>
+              </div>
+
+              <div class="skill" role="listitem">
+                <div>
+                  <div class="name">Tools</div>
+                  <div class="level">VS Code · Git · Figma basics</div>
+                </div>
+                <div style="font-size:12px;color:var(--muted)">Beginner</div>
+              </div>
+            </div>
+          </section>
+
+          <section id="education" class="card" style="margin-top:12px;">
+            <h2 class="section-title">Education</h2>
+
+            <div class="edu-item">
+              <b>College Name — B.Tech / BSc (Computer Science)</b>
+              <span>2025— Present • First Year</span>
+              <div style="color:var(--muted);margin-top:6px;font-size:14px;">
+                Relevant: Data Structures (intro), Discrete Maths, Programming fundamentals (C/Python).
+              </div>
+            </div>
+
+            <div class="edu-item">
+              <b>High School</b>
+              <span>Board Name • Year of Passing</span>
+              <div style="color:var(--muted);margin-top:6px;font-size:14px;">
+                Achievements: (example) School coding club, science fair participant.
+              </div>
+            </div>
+          </section>
+
+          <!-- optional projects placeholder -->
+          <section id="projects" class="card" style="margin-top:12px;">
+            <h2 class="section-title">Mini Projects</h2>
+            <ul style="color:var(--muted);line-height:1.6;margin:0;padding-left:18px">
+              <li>Personal Portfolio (this site) — HTML & CSS only</li>
+              <li>Landing Page clone — practiced layout & grid</li>
+              <li>Mini-UI components — buttons, cards, forms (CSS)</li>
+            </ul>
+          </section>
+        </div>
+
+        <!-- RIGHT SIDEBAR: contact & socials -->
+        <aside class="card sidebar">
+          <div id="contact" class="contact">
+            <h2 class="section-title">Contact</h2>
+
+            <div class="contact-row">
+              <div class="contact-item">
+                <strong style="width:70px;color:#fff">Email</strong>
+                <a href="mailto:you@example.com" style="color:var(--muted);text-decoration:none">venkateshparuchuri20@gmail.com</a>
+		
+              </div>
+
+              <div class="contact-item">
+                <strong style="width:70px;color:#fff">Phone</strong>
+                <span style="color:var(--muted)">+91 9014311616
+              </div>
+
+              <div class="contact-item">
+                <strong style="width:70px;color:#fff">Location</strong>
+                <span style="color:var(--muted)">Chennai,India</span>
+              </div>
+            </div>
+
+            <div style="margin-top:12px;">
+              <a class="btn" href="resume.pdf" download style="width:100%;justify-content:center">Download Resume</a>
+		<a class="btn secondary" href="mailto:venkateshparuchuri20@gmail.com">Email Me</a>
+            </div>
+
+            <div style="margin-top:14px;">
+              <div style="font-size:13px;color:var(--muted);margin-bottom:8px">Follow</div>
+              <div class="socials" aria-hidden="true">
+                <a href="#" title="GitHub">GH</a>
+                <a href="#" title="LinkedIn">LI</a>
+                <a href="#" title="Twitter / X">TW</a>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px;">
+            <h2 class="section-title">Availability</h2>
+            <p style="color:var(--muted);margin:0;font-size:14px;">Open to internships & mentorship opportunities. Reach out via email.</p>
+          </div>
+
+        </aside>
+      </div>
+
+      <footer>
+        <div>© <span id="year"></span> Your Name</div>
+        <div style="color:var(--muted)">Built with ❤️ — HTML & CSS</div>
+      </footer>
+    </main>
+  </div>
+
+  <!-- tiny inline script to set year removed because user asked for no JS.
+       So instead, show a default year in markup or you can update manually. -->
+</body>
+</html>
